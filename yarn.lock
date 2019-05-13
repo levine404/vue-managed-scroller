@@ -1671,6 +1671,13 @@ browserslist@^4.0.0, browserslist@^4.3.4, browserslist@^4.5.4:
     electron-to-chromium "^1.3.127"
     node-releases "^1.1.17"
 
+buefy@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.7.5.tgz#d25fcbb69beeb898849b47b52be78dfd2849452f"
+  integrity sha512-p6yz4XKbfXZd4f9d5rLHXCZWl9Y+8bN7gTaFQ4VdLXh7bdo4WYkPYyFyUFE+fIXhx/VEzSh2TeCEYqn/e8xY8w==
+  dependencies:
+    bulma "0.7.4"
+
 buffer-from@^1.0.0:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/buffer-from/download/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
@@ -1699,6 +1706,11 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/builtin-status-codes/download/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
+
+bulma@0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.4.tgz#7e74512e9118d9799021339e67e365ee0ac4f3f9"
+  integrity sha512-krG2rP6eAX1WE0sf6O0SC/FUVSOBX4m1PBC2+GKLpb2pX0qanaDqcv9U2nu75egFrsHkI0zdWYuk/oGwoszVWg==
 
 bytes@3.0.0:
   version "3.0.0"
@@ -5327,6 +5339,11 @@ number-is-nan@^1.0.0:
   resolved "https://registry.npm.taobao.org/number-is-nan/download/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
+number-to-words@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/number-to-words/-/number-to-words-1.2.4.tgz#e0f124de9628f8d86c4eeb89bac6c07699264501"
+  integrity sha512-/fYevVkXRcyBiZDg6yzZbm0RuaD6i0qRfn8yr+6D0KgBMOndFPxuW10qCHpzs50nN8qKuv78k8MuotZhcVX6Pw==
+
 oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.npm.taobao.org/oauth-sign/download/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
@@ -7770,6 +7787,32 @@ vue-loader@^15.7.0:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-managed-scroller@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/vue-managed-scroller/-/vue-managed-scroller-0.1.0.tgz#7da3fad2f91ab7f6b207e87a16630fb55078a2db"
+  integrity sha512-iwfWZb7VPdbiQICMxfI1FP7BrszgJnhtZ3PZ/W5ypva1dZh4iU7gJR2LQ0SKkN88vEUfKu2K85LysxmrfgqSbQ==
+  dependencies:
+    core-js "^2.6.5"
+    vue "^2.6.10"
+
+vue-managed-scroller@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vue-managed-scroller/-/vue-managed-scroller-0.1.1.tgz#73e16dd3dff0f4de4f37dec6ba90d7234528a336"
+  integrity sha512-KrO044EwiZm+j36RwGUIgLl7iSaYic3WDtTX+wBKiqo4iJmiSoDjFTIFvtNB1HV0gLWUz1JDnIBfYPYlQH5tVA==
+  dependencies:
+    core-js "^2.6.5"
+    vue "^2.6.10"
+    vue-managed-scroller "^0.1.0"
+
+vue-managed-scroller@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/vue-managed-scroller/-/vue-managed-scroller-0.1.2.tgz#84a7e09ddf39ce6ff6ce3b91df0b4eb00185fa85"
+  integrity sha512-HmLVJCkNR5cRZC9qAQzk/NdcrzLMnCWWZ1xFpBb7w9iGS9VLnsPCOcIDCdXIgGuYz8HLClEcZwLRJ6dAtfSTog==
+  dependencies:
+    core-js "^2.6.5"
+    vue "^2.6.10"
+    vue-managed-scroller "^0.1.1"
 
 vue-style-loader@^4.1.0:
   version "4.1.2"

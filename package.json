@@ -1,15 +1,30 @@
 {
   "name": "vue-managed-scroller",
-  "version": "0.1.0",
-  "private": true,
+  "author": "Justin Levine",
+  "version": "0.1.2",
+  "license": "MIT",
+  "private": false,
   "scripts": {
+    "test": "echo \"No test specified\"",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-bundle": "vue-cli-service build --target lib --name vue-managed-scroller ./src/components/index.js"
   },
+  "main": "./dist/vue-managed-scroller.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/",
+    "*.json",
+    "*.js"
+  ],
   "dependencies": {
+    "buefy": "^0.7.5",
     "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "number-to-words": "^1.2.4",
+    "vue": "^2.6.10",
+    "vue-managed-scroller": "^0.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
