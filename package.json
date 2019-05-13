@@ -26,8 +26,7 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "lodash": "^4.17.11",
-    "vue": "^2.6.10",
-    "vue-managed-scroller": "^0.1.2"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "buefy": "^0.7.5",
