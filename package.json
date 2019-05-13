@@ -3,6 +3,10 @@
   "author": "Justin Levine",
   "version": "0.1.2",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/levine404/vue-managed-scroller.git"
+  },
   "private": false,
   "scripts": {
     "test": "echo \"No test specified\"",
