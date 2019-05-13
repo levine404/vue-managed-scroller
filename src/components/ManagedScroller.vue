@@ -125,13 +125,25 @@ export default {
       }
     },
     _scrollHandler() {
-      // Limit calls via request animation frame
+      // Limit calls via request animation frame if available
+      if (requestAnimationFrame) {
+        requestAnimationFrame(() => {
+          this._udpateScrollPos();
+        });
+      } else {
+        this._udpateScrollPos();
+      }
       requestAnimationFrame(() => {
         // Update scroll position
         this.scrollPos = this.direction === 'vertical'
           ? this.$el.scrollTop
           : this.$el.scrollLeft;
       });
+    },
+    _udpateScrollPos() {
+      this.scrollPos = this.direction === 'vertical'
+        ? this.$el.scrollTop
+        : this.$el.scrollLeft;
     },
     _mouseWheelHandler(event) {
       if (this.direction === 'horizontal' && this.invertMouseWheel) {
@@ -194,7 +206,7 @@ export default {
             itemIndex: i,
             isVisible,
             updateShellSize: this.updateShellSize.bind(this, i),
-            resize: this._updateElSize,
+            resize: this._updateElSize
           });
           if (defaultSlotNodes) {
             // Get the mananged scroll shells from the defaultSlotNodes
@@ -214,7 +226,7 @@ export default {
                 ManagedScrollerShell.data.key = `__${i}__${managedScrollShellIndex}`;
                 ManagedScrollerShell.key = `__${i}__${managedScrollShellIndex}`;
                 ManagedScrollerShell.data.class = [
-                  ...(ManagedScrollerShell.data.class || []), 'managed-scroller-shell',
+                  ...(ManagedScrollerShell.data.class || []), 'managed-scroller-shell'
                 ];
                 // Change static shell context
                 ManagedScrollerShell.context = this;
@@ -222,7 +234,7 @@ export default {
                 ManagedScrollerShell.data.style = {
                   ...ManagedScrollerShell.data.style || {},
                   [dimension]: shellSizes[managedScrollShellIndex] +
-                    (isNumber(shellSizes[managedScrollShellIndex]) ? 'px' : ''),
+                    (isNumber(shellSizes[managedScrollShellIndex]) ? 'px' : '')
                 };
                 // Adjust children if root vNode is not an element
                 if (ManagedScrollerShell.componentOptions && ManagedScrollerShell.componentOptions.children) {
@@ -248,26 +260,26 @@ export default {
                     class: 'managed-scroller-shell',
                     style: {
                       [dimension]: shellSizes[managedScrollShellIndex] +
-                        (isNumber(shellSizes[managedScrollShellIndex]) ? 'px' : ''),
+                        (isNumber(shellSizes[managedScrollShellIndex]) ? 'px' : '')
                     },
-                    key: `__${i}__${managedScrollShellIndex}`,
+                    key: `__${i}__${managedScrollShellIndex}`
                   },
                   [
                     createElement(
                       'div',
                       {
                         attrs: {
-                          'data-i': managedScrollShellIndex,
+                          'data-i': managedScrollShellIndex
                         },
                         style: {
-                          [dimension === 'width' ? 'height' : 'width']: '100%',
+                          [dimension === 'width' ? 'height' : 'width']: '100%'
                         },
                         class: 'dynamic-shell-wrapper',
                         ref: String(i),
-                        refInFor: true,
+                        refInFor: true
                       },
                       [ManagedScrollerShell],
-                    ),
+                    )
                   ]);
                 // Add shell to render list
                 shellsToRender.push(dynnamicShell);
@@ -285,8 +297,8 @@ export default {
           {
             class: ['unrendered-area', 'managed-scroller-shell'],
             style: {
-              [dimension]: preUnrenderedSize + 'px',
-            },
+              [dimension]: preUnrenderedSize + 'px'
+            }
           },
         );
         vNodes.push(preUnrenderedArea);
@@ -302,9 +314,9 @@ export default {
           {
             class: ['unrendered-area', 'managed-scroller-shell'],
             style: {
-              [dimension]: postUnrenderedSize + 'px',
-            },
-          },
+              [dimension]: postUnrenderedSize + 'px'
+            }
+          }
         );
         vNodes.push(postUnrenderedArea);
       } else {
@@ -317,10 +329,10 @@ export default {
       {
         class: 'managed-scroller-wrapper',
         style: {
-          [dimension]: cHeight + 'px',
-        },
+          [dimension]: cHeight + 'px'
+        }
       },
-      [vNodes],
+      [vNodes]
     );
     const rootNodes = [managedScrollerWrapper];
     if (!ResizeObserver && IntersectionObserver) {
@@ -393,14 +405,14 @@ export default {
         class: ['managed-scroller', this.direction],
         style: {
           width: this.width + (isNumber(this.width) ? 'px' : ''),
-          height: this.height + (isNumber(this.height) ? 'px' : ''),
+          height: this.height + (isNumber(this.height) ? 'px' : '')
         },
         on: {
           scroll: this.throttledScroll,
-          mousewheel: this._mouseWheelHandler,
-        },
+          mousewheel: this._mouseWheelHandler
+        }
       },
-      rootNodes,
+      rootNodes
     );
     return rootElement;
   }

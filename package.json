@@ -20,13 +20,14 @@
     "*.js"
   ],
   "dependencies": {
-    "buefy": "^0.7.5",
     "core-js": "^2.6.5",
-    "number-to-words": "^1.2.4",
+    "lodash": "^4.17.11",
     "vue": "^2.6.10",
     "vue-managed-scroller": "^0.1.2"
   },
   "devDependencies": {
+    "buefy": "^0.7.5",
+    "number-to-words": "^1.2.4",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-service": "^3.7.0",

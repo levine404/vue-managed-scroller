@@ -4,11 +4,11 @@ export default {
   props: {
     static: {
       type: Boolean,
-      default: false,
+      default: false
     },
     size: {
       type: Number,
-      default: 40,
+      default: 40
     }
   },
   render() {
