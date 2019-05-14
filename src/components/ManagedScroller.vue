@@ -48,13 +48,13 @@ export default {
   mounted() {
     // Update element size
     this._updateElSize();
-    if (ResizeObserver) {
+    if (typeof ResizeObserver !== 'undefined') {
       this.resizeObserver = new ResizeObserver(() => {
         this.resize();
       });
       this.resizeObserver.observe(this.$el);
     // Observe bounds if intersection observer is available
-    } else if (IntersectionObserver) {
+    } else if (typeof IntersectionObserver !== undefined) {
       this.resizeObserver = new IntersectionObserver(() => {
         this.resize();
         // Rerun resize handler in the event of fast resizes
@@ -70,9 +70,7 @@ export default {
     }
   },
   destroyed() {
-    if ((ResizeObserver || IntersectionObserver) && this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    } else if (this.resizeObserver) {
+    if (this.resizeObserver) {
       removeEventListener('resize', this.resizeObserver);
     }
   },
@@ -119,7 +117,7 @@ export default {
     },
     _scrollHandler() {
       // Limit calls via request animation frame if available
-      if (requestAnimationFrame) {
+      if (typeof requestAnimationFrame !== 'undefined') {
         requestAnimationFrame(this._udpateScrollPos);
       } else {
         this._udpateScrollPos();
@@ -326,7 +324,7 @@ export default {
       [vNodes]
     );
     const rootNodes = [managedScrollerWrapper];
-    if (!ResizeObserver && IntersectionObserver) {
+    if (typeof ResizeObserver === 'undefined' && typeof IntersectionObserver !== 'undefined') {
       // Create top bounds for intersection observation
       const bottomInnerBounds = createElement(
         'div',
