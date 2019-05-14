@@ -81,6 +81,9 @@ export default {
 .static-item {
   padding: 4px;
 }
+.static-item:hover, .static-item:nth-child(odd):hover {
+  background: rgba(154, 181, 218, 0.438);
+}
 .static-item:nth-child(odd) {
   background: #eee;
 }

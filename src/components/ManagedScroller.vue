@@ -1,6 +1,6 @@
 <script>
 import Vue from 'vue';
-import { isNumber, isString, sum, throttle } from 'lodash';
+import { isNumber, isString, sum } from 'lodash';
 export default {
   name: 'managed-scroller',
   props: {
@@ -24,10 +24,6 @@ export default {
       type: [String, Number],
       default: 0
     },
-    throttle: {
-      type: Number,
-      default: 100
-    },
     invertMouseWheel: {
       type: Boolean,
       default: false
@@ -47,9 +43,6 @@ export default {
       return isNumber(this.items)
         ? Array.from({ length: this.items }).map((x, index) => index)
         : this.items;
-    },
-    throttledScroll() {
-      return throttle(this._scrollHandler, this.throttle);
     }
   },
   mounted() {
@@ -127,9 +120,7 @@ export default {
     _scrollHandler() {
       // Limit calls via request animation frame if available
       if (requestAnimationFrame) {
-        requestAnimationFrame(() => {
-          this._udpateScrollPos();
-        });
+        requestAnimationFrame(this._udpateScrollPos);
       } else {
         this._udpateScrollPos();
       }
@@ -408,7 +399,7 @@ export default {
           height: this.height + (isNumber(this.height) ? 'px' : '')
         },
         on: {
-          scroll: this.throttledScroll,
+          scroll: this._scrollHandler,
           mousewheel: this._mouseWheelHandler
         }
       },
