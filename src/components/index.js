@@ -1,9 +1,11 @@
-import HelloWorld from '@/components/HelloWorld';
+import VirtualScroll from '@/components/VirtualScroll.vue';
+import VirtualScrollShell from '@/components/VirtualScrollShell.vue';
 
 export default {
   install(Vue) {
-    Vue.component('hello-world', HelloWorld);
+    Vue.component('virtual-scroll', VirtualScroll);
+    Vue.component('virtual-scroll-shell', VirtualScrollShell);
   }
 }
 
-export { HelloWorld }
+export { VirtualScroll, VirtualScrollShell }
