@@ -47,7 +47,6 @@ export default {
 | `height`           | String, Number | 100%     | The height of the scroller area. |
 | `direction`        | String         | vertical | The scroll direction of the scroller: `vertical` or `horizontal`. |
 | `buffer`           | Number         | 0        | How much content should be rendered outside the viewing area (in pixels). |
-| `throttle`         | Number         | 100      | A throttle amount in ms to limit the amount of scroll events processed. |
 | `invertMouseWheel` | Boolean        | false    | Allow the usage of the mousewheel to scroll when the scroll `direction` is set to `horizontal`. |
 #### Methods
 | Method            | Description |
