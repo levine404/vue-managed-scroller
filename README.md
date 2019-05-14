@@ -1,6 +1,6 @@
 # vue-managed-scroller
 
-[View live demo in sandbox](https://codesandbox.io/s/v022jr1545)
+[View live demo in sandbox](https://v022jr1545.codesandbox.io/)
 
 ## Installation
 ```
