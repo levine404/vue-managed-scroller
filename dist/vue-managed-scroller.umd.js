@@ -19366,6 +19366,13 @@ module.exports = function (exec, skipClosing) {
 
 /***/ }),
 
+/***/ "5d58":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("d8d6");
+
+/***/ }),
+
 /***/ "5dbc":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19624,6 +19631,13 @@ __webpack_require__("9c6c")('includes');
 
 /***/ }),
 
+/***/ "67bb":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("f921");
+
+/***/ }),
+
 /***/ "6821":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19644,6 +19658,14 @@ var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
+
+
+/***/ }),
+
+/***/ "69d3":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("6718")('asyncIterator');
 
 
 /***/ }),
@@ -19739,6 +19761,14 @@ module.exports = function (TO_STRING) {
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
+
+
+/***/ }),
+
+/***/ "765d":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("6718")('observable');
 
 
 /***/ }),
@@ -20560,6 +20590,13 @@ __webpack_require__("ce7e")('getOwnPropertyDescriptor', function () {
 
 /***/ }),
 
+/***/ "c207":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "c366":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20954,6 +20991,16 @@ module.exports = function (fn, that, length) {
 
 /***/ }),
 
+/***/ "d8d6":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("1654");
+__webpack_require__("6c1c");
+module.exports = __webpack_require__("ccb9").f('iterator');
+
+
+/***/ }),
+
 /***/ "d8e8":
 /***/ (function(module, exports) {
 
@@ -21232,6 +21279,18 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "f921":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("014b");
+__webpack_require__("c207");
+__webpack_require__("69d3");
+__webpack_require__("765d");
+module.exports = __webpack_require__("584a").Symbol;
+
+
+/***/ }),
+
 /***/ "fa5b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21389,6 +21448,33 @@ var es6_object_keys = __webpack_require__("456d");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
 
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
+var iterator = __webpack_require__("5d58");
+var iterator_default = /*#__PURE__*/__webpack_require__.n(iterator);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol.js
+var symbol = __webpack_require__("67bb");
+var symbol_default = /*#__PURE__*/__webpack_require__.n(symbol);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/typeof.js
+
+
+
+function typeof_typeof2(obj) { if (typeof symbol_default.a === "function" && typeof iterator_default.a === "symbol") { typeof_typeof2 = function _typeof2(obj) { return typeof obj; }; } else { typeof_typeof2 = function _typeof2(obj) { return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof obj; }; } return typeof_typeof2(obj); }
+
+function typeof_typeof(obj) {
+  if (typeof symbol_default.a === "function" && typeof_typeof2(iterator_default.a) === "symbol") {
+    typeof_typeof = function _typeof(obj) {
+      return typeof_typeof2(obj);
+    };
+  } else {
+    typeof_typeof = function _typeof(obj) {
+      return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof_typeof2(obj);
+    };
+  }
+
+  return typeof_typeof(obj);
+}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.iterator.js
 var es6_string_iterator = __webpack_require__("5df3");
 
@@ -21406,6 +21492,7 @@ var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpac
 var lodash = __webpack_require__("2ef0");
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/ManagedScroller.vue?vue&type=script&lang=js&
+
 
 
 
@@ -21473,18 +21560,18 @@ var lodash = __webpack_require__("2ef0");
     // Update element size
     this._updateElSize();
 
-    if (ResizeObserver) {
+    if (typeof ResizeObserver !== 'undefined') {
       this.resizeObserver = new ResizeObserver(function () {
         _this.resize();
       });
       this.resizeObserver.observe(this.$el); // Observe bounds if intersection observer is available
-    } else if (IntersectionObserver) {
+    } else if ((typeof IntersectionObserver === "undefined" ? "undefined" : typeof_typeof(IntersectionObserver)) !== undefined) {
       this.resizeObserver = new IntersectionObserver(function () {
         _this.resize(); // Rerun resize handler in the event of fast resizes
         // (will not recalculate managedShellSizes if dimensions are the same)
 
 
-        setTimeout(_this.resize, 300);
+        requestAnimationFrame(_this.resize);
       });
       this.resizeObserver.observe(this.$refs['bottom-inner-bounds']);
       this.resizeObserver.observe(this.$refs['bottom-outter-bounds']);
@@ -21495,9 +21582,7 @@ var lodash = __webpack_require__("2ef0");
     }
   },
   destroyed: function destroyed() {
-    if ((ResizeObserver || IntersectionObserver) && this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    } else if (this.resizeObserver) {
+    if (this.resizeObserver) {
       removeEventListener('resize', this.resizeObserver);
     }
   },
@@ -21556,7 +21641,7 @@ var lodash = __webpack_require__("2ef0");
       var _this4 = this;
 
       // Limit calls via request animation frame if available
-      if (requestAnimationFrame) {
+      if (typeof requestAnimationFrame !== 'undefined') {
         requestAnimationFrame(this._udpateScrollPos);
       } else {
         this._udpateScrollPos();
@@ -21723,14 +21808,16 @@ var lodash = __webpack_require__("2ef0");
     }, [vNodes]);
     var rootNodes = [managedScrollerWrapper];
 
-    if (!ResizeObserver && IntersectionObserver) {
-      // Create top bounds for intersection observation
+    if (typeof ResizeObserver === 'undefined' && typeof IntersectionObserver !== 'undefined') {
+      var offsetTop = this.$el ? this.$el.offsetTop : 0;
+      var offsetLeft = this.$el ? this.$el.offsetLeft : 0; // Create top bounds for intersection observation
+
       var bottomInnerBounds = createElement('div', {
         key: 'bottom-inner-bounds',
         ref: 'bottom-inner-bounds',
         class: 'bounds',
         style: {
-          top: (this.elHeight || 0) - 11 + 'px',
+          top: (this.elHeight || 0) - 1 + offsetTop + 'px',
           left: 0,
           width: '100%',
           height: '1px'
@@ -21742,7 +21829,7 @@ var lodash = __webpack_require__("2ef0");
         ref: 'bottom-outter-bounds',
         class: 'bounds',
         style: {
-          top: (this.elHeight || 0) + 1 + 'px',
+          top: (this.elHeight || 0) + 11 + offsetTop + 'px',
           left: 0,
           width: '100%',
           height: '1px'
@@ -21755,7 +21842,7 @@ var lodash = __webpack_require__("2ef0");
         class: 'bounds',
         style: {
           top: 0,
-          left: (this.elWidth || 0) - 11 + 'px',
+          left: (this.elWidth || 0) - 1 + offsetLeft + 'px',
           width: '1px',
           height: '100%'
         }
@@ -21767,7 +21854,7 @@ var lodash = __webpack_require__("2ef0");
         class: 'bounds',
         style: {
           top: 0,
-          left: (this.elWidth || 0) + 1 + 'px',
+          left: (this.elWidth || 0) + 11 + offsetLeft + 'px',
           width: '1px',
           height: '100%'
         }
