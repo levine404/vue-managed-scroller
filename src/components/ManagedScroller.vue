@@ -59,7 +59,7 @@ export default {
         this.resize();
         // Rerun resize handler in the event of fast resizes
         // (will not recalculate managedShellSizes if dimensions are the same)
-        setTimeout(this.resize, 300);
+        requestAnimationFrame(this.resize);
       });
       this.resizeObserver.observe(this.$refs['bottom-inner-bounds']);
       this.resizeObserver.observe(this.$refs['bottom-outter-bounds']);
@@ -325,6 +325,8 @@ export default {
     );
     const rootNodes = [managedScrollerWrapper];
     if (typeof ResizeObserver === 'undefined' && typeof IntersectionObserver !== 'undefined') {
+      const offsetTop = this.$el ? this.$el.offsetTop : 0;
+      const offsetLeft = this.$el ? this.$el.offsetLeft : 0;
       // Create top bounds for intersection observation
       const bottomInnerBounds = createElement(
         'div',
@@ -333,7 +335,7 @@ export default {
           ref: 'bottom-inner-bounds',
           class: 'bounds',
           style: {
-            top: ((this.elHeight || 0) - 11) + 'px',
+            top: ((this.elHeight || 0) - 1) + offsetTop + 'px',
             left: 0,
             width: '100%',
             height: '1px'
@@ -348,7 +350,7 @@ export default {
           ref: 'bottom-outter-bounds',
           class: 'bounds',
           style: {
-            top: ((this.elHeight || 0) + 1) + 'px',
+            top: ((this.elHeight || 0) + 11) + offsetTop + 'px',
             left: 0,
             width: '100%',
             height: '1px'
@@ -364,7 +366,7 @@ export default {
           class: 'bounds',
           style: {
             top: 0,
-            left: ((this.elWidth || 0) - 11) + 'px',
+            left: ((this.elWidth || 0) - 1) + offsetLeft + 'px',
             width: '1px',
             height: '100%'
           }
@@ -379,7 +381,7 @@ export default {
           class: 'bounds',
           style: {
             top: 0,
-            left: ((this.elWidth || 0) + 1) + 'px',
+            left: ((this.elWidth || 0) + 11) + offsetLeft + 'px',
             width: '1px',
             height: '100%'
           }
