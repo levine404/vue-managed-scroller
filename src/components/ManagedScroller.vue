@@ -56,9 +56,6 @@ export default {
     // Observe bounds if intersection observer is available
     } else if (typeof IntersectionObserver !== undefined) {
       this.resizeObserver = new IntersectionObserver(() => {
-        this.resize();
-        // Rerun resize handler in the event of fast resizes
-        // (will not recalculate managedShellSizes if dimensions are the same)
         requestAnimationFrame(this.resize);
       });
       this.resizeObserver.observe(this.$refs['bottom-inner-bounds']);
