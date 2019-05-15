@@ -49,20 +49,6 @@ You can simply create a basic `ManagedScroller` like this: (example using Vue's 
   </template>
 </ManagedScroller>
 ```
-A `ManagedScroller` may also contain multiple shells:
-```
-<ManagedScroller :items="1000">
-  <template v-slot="{ item }">
-    <ManagedScrollerShell static>
-      (1) {{ item }}
-    </ManagedScrollerShell>
-    ....
-    <ManagedScrollerShell static>
-      (N) {{ item }}
-    </ManagedScrollerShell>
-  </template>
-</ManagedScroller>
-```
 To manage shells with dynamically sized content use `updateShellSize` either from the `slot` or externally by using `ref` to the `ManagedScroller` component:
 ```
 <ManagedScroller :items="1000" ref="managed-scroller">
@@ -78,6 +64,20 @@ To manage shells with dynamically sized content use `updateShellSize` either fro
 or externally such as:
 ```
 this.$refs['managed-scroller'].updateShellSize(index);
+```
+A `ManagedScroller` may also contain multiple shells.  For example, in the event when a `'position: sticky;' item is used in conjuction with dynamically loaded content:
+```
+<ManagedScroller :items="items">
+  <template v-slot="{ item, itemIndex, updateShellSize }">
+    <ManagedScrollerShell static style="{ position: 'sticky' }">
+      {{ itemIndex + 1 }}
+    </ManagedScrollerShell>
+    ....
+    <ManagedScrollerShell>
+      Dynamic content...
+    </ManagedScrollerShell>
+  </template>
+</ManagedScroller>
 ```
 
 ### ManagedScroller

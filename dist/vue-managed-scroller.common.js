@@ -1046,7 +1046,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, ".managed-scroller .managed-scroller-wrapper{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex}.managed-scroller .managed-scroller-wrapper .managed-scroller-shell{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;display:block}.managed-scroller .managed-scroller-wrapper .managed-scroller-shell .dynamic-shell-wrapper{position:absolute;top:0;left:0}.managed-scroller.vertical{overflow-y:scroll}.managed-scroller.horizontal{overflow-x:scroll}.managed-scroller.vertical .managed-scroller-wrapper{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.managed-scroller.horizontal .managed-scroller-wrapper{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap}.managed-scroller.horizontal .managed-scroller-shell{height:100%}.managed-scroller.vertical .managed-scroller-wrapper{width:100%}.managed-scroller.horizontal .managed-scroller-wrapper{height:100%}.managed-scroller.managed-scroller-shell{overflow:hidden}.managed-scroller .bounds{position:absolute;pointer-events:none;opacity:0}", ""]);
+exports.push([module.i, ".managed-scroller{min-height:0}.managed-scroller.vertical{overflow-y:scroll}.managed-scroller.horizontal{overflow-x:scroll}.managed-scroller .managed-scroller-wrapper{min-height:0;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex}.managed-scroller .managed-scroller-wrapper .managed-scroller-shell{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;display:block}.managed-scroller .managed-scroller-wrapper .managed-scroller-shell .dynamic-shell-wrapper{position:absolute;top:0;left:0}.managed-scroller.vertical .managed-scroller-wrapper{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.managed-scroller.horizontal .managed-scroller-wrapper{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap}.managed-scroller.horizontal .managed-scroller-shell{height:100%}.managed-scroller.vertical .managed-scroller-wrapper{width:100%}.managed-scroller.horizontal .managed-scroller-wrapper{height:100%}.managed-scroller .bounds{position:absolute;pointer-events:none;opacity:0}", ""]);
 
 // exports
 
@@ -21541,7 +21541,7 @@ var lodash = __webpack_require__("2ef0");
       return Object(lodash["isNumber"])(this.items) ? Array.from({
         length: this.items
       }).map(function (x, index) {
-        return index;
+        return index + 1;
       }) : this.items;
     }
   },
@@ -21558,10 +21558,6 @@ var lodash = __webpack_require__("2ef0");
       this.resizeObserver.observe(this.$el); // Observe bounds if intersection observer is available
     } else if ((typeof IntersectionObserver === "undefined" ? "undefined" : typeof_typeof(IntersectionObserver)) !== undefined) {
       this.resizeObserver = new IntersectionObserver(function () {
-        _this.resize(); // Rerun resize handler in the event of fast resizes
-        // (will not recalculate managedShellSizes if dimensions are the same)
-
-
         requestAnimationFrame(_this.resize);
       });
       this.resizeObserver.observe(this.$refs['bottom-inner-bounds']);
@@ -21648,14 +21644,14 @@ var lodash = __webpack_require__("2ef0");
     },
     _mouseWheelHandler: function _mouseWheelHandler(event) {
       if (this.direction === 'horizontal' && this.invertMouseWheel) {
-        this.$el.scrollLeft = this.$el.scrollLeft + Math.sign(event.deltaY) * this.$el.offsetWidth / 7;
+        this.$el.scrollLeft = this.$el.scrollLeft + Math.sign(event.deltaY || event.detail) * this.$el.offsetWidth / 7;
       }
     },
     _getDefaultShellSizes: function _getDefaultShellSizes() {
       return (this.$scopedSlots.default({}) || []).filter(function (vNode) {
         return vNode.componentOptions && vNode.componentOptions.tag === 'ManagedScrollerShell';
       }).map(function (ManagedScrollerShell) {
-        return ManagedScrollerShell.componentOptions.propsData.size || 0;
+        return ManagedScrollerShell.componentOptions.propsData.size || 40;
       });
     }
   },
@@ -21694,7 +21690,7 @@ var lodash = __webpack_require__("2ef0");
             var totalHeight = cHeight + totalShellSize;
             var bottom = _this5.scrollPos + elSize;
 
-            if (cHeight >= _this5.scrollPos && cHeight <= bottom || totalHeight >= _this5.scrollPos && totalHeight <= bottom) {
+            if (cHeight >= _this5.scrollPos && cHeight <= bottom || totalHeight >= _this5.scrollPos && totalHeight <= bottom || cHeight <= _this5.scrollPos && totalHeight >= bottom) {
               isVisible = true;
             } // Get vnodes from default slot
 
@@ -21862,7 +21858,8 @@ var lodash = __webpack_require__("2ef0");
       },
       on: {
         scroll: this._scrollHandler,
-        mousewheel: this._mouseWheelHandler
+        mousewheel: this._mouseWheelHandler,
+        DOMMouseScroll: this._mouseWheelHandler
       }
     }, rootNodes);
     return rootElement;
