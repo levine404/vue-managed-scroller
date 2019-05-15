@@ -410,7 +410,17 @@ export default {
 </script>
 
 <style>
+.managed-scroller {
+  min-height: 0;
+}
+.managed-scroller.vertical {
+  overflow-y: scroll;
+}
+.managed-scroller.horizontal {
+  overflow-x: scroll;
+}
 .managed-scroller .managed-scroller-wrapper {
+  min-height: 0;
   position: relative;
   display: flex;
 }
@@ -423,12 +433,6 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-}
-.managed-scroller.vertical {
-  overflow-y: scroll;
-}
-.managed-scroller.horizontal {
-  overflow-x: scroll;
 }
 .managed-scroller.vertical .managed-scroller-wrapper {
   flex-direction: column;
@@ -445,9 +449,6 @@ export default {
 }
 .managed-scroller.horizontal .managed-scroller-wrapper {
   height: 100%;
-}
-.managed-scroller.managed-scroller-shell {
-  overflow: hidden;
 }
 .managed-scroller .bounds {
   position: absolute;
