@@ -32,13 +32,13 @@
       ref="managed-scroller"
       invertMouseWheel
     >
-      <template v-slot="{ item, itemIndex }">
+      <template v-slot="{ item }">
         <ManagedScrollerShell
           static
           :size="Math.max(10, shellSize)"
           class="static-item"
         >
-          {{ (itemIndex + 1).toLocaleString() }}
+          {{ (item + 0).toLocaleString() }}
         </ManagedScrollerShell>
       </template>
     </ManagedScroller>

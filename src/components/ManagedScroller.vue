@@ -41,7 +41,7 @@ export default {
   computed: {
     iterableItems() {
       return isNumber(this.items)
-        ? Array.from({ length: this.items }).map((x, index) => index)
+        ? Array.from({ length: this.items }).map((x, index) => index + 1)
         : this.items;
     }
   },
