@@ -185,7 +185,8 @@ export default {
           const bottom = this.scrollPos + elSize;
           if (
             (cHeight >= this.scrollPos && cHeight <= bottom) ||
-            (totalHeight >= this.scrollPos && totalHeight <= bottom)
+            (totalHeight >= this.scrollPos && totalHeight <= bottom) ||
+            (cHeight <= this.scrollPos && totalHeight >= bottom)
           ) {
             isVisible = true;
           }
