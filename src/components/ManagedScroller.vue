@@ -136,7 +136,7 @@ export default {
     },
     _mouseWheelHandler(event) {
       if (this.direction === 'horizontal' && this.invertMouseWheel) {
-        this.$el.scrollLeft = this.$el.scrollLeft + (Math.sign(event.deltaY) * this.$el.offsetWidth / 7);
+        this.$el.scrollLeft = this.$el.scrollLeft + (Math.sign(event.deltaY || event.detail) * this.$el.offsetWidth / 7);
       }
     },
     _getDefaultShellSizes() {
@@ -401,7 +401,8 @@ export default {
         },
         on: {
           scroll: this._scrollHandler,
-          mousewheel: this._mouseWheelHandler
+          mousewheel: this._mouseWheelHandler,
+          DOMMouseScroll: this._mouseWheelHandler
         }
       },
       rootNodes
