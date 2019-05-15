@@ -140,7 +140,7 @@ export default {
       return (this.$scopedSlots.default({}) || [])
         .filter((vNode) =>
           vNode.componentOptions && vNode.componentOptions.tag === 'ManagedScrollerShell')
-        .map((ManagedScrollerShell) => ManagedScrollerShell.componentOptions.propsData.size || 0);
+        .map((ManagedScrollerShell) => ManagedScrollerShell.componentOptions.propsData.size || 40);
     }
   },
   render(createElement) {
