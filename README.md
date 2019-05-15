@@ -38,6 +38,48 @@ export default {
 - In order to handle resizing of scroller, either the `ResizeObserver` API or the `IntersectionObserver` API is used.  If neither of these are available a simple `resize` event is attached to the window.  If these APIs are not available, considering using an `IntersectionObserver` polyfill [here](https://github.com/w3c/IntersectionObserver/tree/master/polyfill).  Otherwsise you may consider handling resizing with your own logic via `resize` method.
 - The scroller is set to a default of 100% width and 100% height, meaning the element wrapping the scroller should have a set width and height, otherwise you can set the width and height of the scroller manually via its props.
 
+### Usage
+You can simply create a basic `ManagedScroller` like this: (example using Vue's latest slot syntax)
+```
+<ManagedScroller :items="1000">
+  <template v-slot="{ item }">
+    <ManagedScrollerShell static>
+      {{ item }}
+    </ManagedScrollerShell>
+  </template>
+</ManagedScroller>
+```
+A `ManagedScroller` may also contain multiple shells:
+```
+<ManagedScroller :items="1000">
+  <template v-slot="{ item }">
+    <ManagedScrollerShell static>
+      (1) {{ item }}
+    </ManagedScrollerShell>
+    ....
+    <ManagedScrollerShell static>
+      (N) {{ item }}
+    </ManagedScrollerShell>
+  </template>
+</ManagedScroller>
+```
+To manage shells with dynamically sized content use `updateShellSize` either from the `slot` or externally by using `ref` to the `ManagedScroller` component:
+```
+<ManagedScroller :items="1000" ref="managed-scroller">
+  <template v-slot="{ item, updateShellSize }">
+    <ManagedScrollerShell>
+      <div @click="updateShellSize">
+        {{ item }}
+      </div>
+    </ManagedScrollerShell>
+  </template>
+</ManagedScroller>
+```
+or externally such as:
+```
+this.$refs['managed-scroller'].updateShellSize(index);
+```
+
 ### ManagedScroller
 #### Configuration
 | Property           | Type           | Default  | Description |
