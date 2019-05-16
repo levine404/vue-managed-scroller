@@ -21648,11 +21648,17 @@ var lodash = __webpack_require__("2ef0");
       }
     },
     _getDefaultShellSizes: function _getDefaultShellSizes() {
-      return (this.$scopedSlots.default({}) || []).filter(function (vNode) {
+      return this.iterableItems.length ? (this.$scopedSlots.default({
+        item: this.iterableItems[0],
+        itemIndex: 0,
+        isVisible: false,
+        updateShellSize: this.updateShellSize.bind(this, 0),
+        resize: this._updateElSize
+      }) || []).filter(function (vNode) {
         return vNode.componentOptions && vNode.componentOptions.tag === 'ManagedScrollerShell';
       }).map(function (ManagedScrollerShell) {
         return ManagedScrollerShell.componentOptions.propsData.size || 40;
-      });
+      }) : [0];
     }
   },
   render: function render(createElement) {
