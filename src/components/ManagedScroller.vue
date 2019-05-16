@@ -137,10 +137,18 @@ export default {
       }
     },
     _getDefaultShellSizes() {
-      return (this.$scopedSlots.default({}) || [])
-        .filter((vNode) =>
-          vNode.componentOptions && vNode.componentOptions.tag === 'ManagedScrollerShell')
-        .map((ManagedScrollerShell) => ManagedScrollerShell.componentOptions.propsData.size || 40);
+      return this.iterableItems.length
+        ? (this.$scopedSlots.default({
+          item: this.iterableItems[0],
+          itemIndex: 0,
+          isVisible: false,
+          updateShellSize: this.updateShellSize.bind(this, 0),
+          resize: this._updateElSize
+        }) || [])
+          .filter((vNode) =>
+            vNode.componentOptions && vNode.componentOptions.tag === 'ManagedScrollerShell')
+          .map((ManagedScrollerShell) => ManagedScrollerShell.componentOptions.propsData.size || 40)
+        : [0];
     }
   },
   render(createElement) {
