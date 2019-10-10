@@ -100,6 +100,7 @@ A `ManagedScroller` may also contain multiple shells.  For example, in the event
 | -----          | ----------- |
 | `startReached` | Triggers when the first item is rendered. |
 | `endReached`   | Triggers when the last item is rendered. |
+| `render`       | Triggers when rendered and provides the index of the top most shell. |
 #### Default Slot
 | Property          | Type     | Description |
 | --------          | ----     | ----------- |

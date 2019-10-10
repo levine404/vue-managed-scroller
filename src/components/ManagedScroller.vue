@@ -63,7 +63,7 @@ export default {
       this.resizeObserver.observe(this.$refs['right-inner-bounds']);
       this.resizeObserver.observe(this.$refs['right-outter-bounds']);
     } else {
-      this.resizeObserver = addEventListener('resize', this.resizeObserver);
+      this.resizeObserver = addEventListener('resize', this.resize);
     }
   },
   destroyed() {
@@ -171,6 +171,7 @@ export default {
       const defaultShellSizes = this._getDefaultShellSizes();
       let preUnrenderedSize = 0;
       let postUnrenderedSize = 0;
+      let topItemIndex = -1;
       // Loop through items
       for (let i = 0; i < this.iterableItems.length; i++) {
         // Get item managed size
@@ -194,6 +195,10 @@ export default {
             (cHeight <= this.scrollPos && totalHeight >= bottom)
           ) {
             isVisible = true;
+          }
+          if (isVisible && topItemIndex === -1) {
+            this.$emit('render', i);
+            topItemIndex = i
           }
           // Get vnodes from default slot
           const defaultSlotNodes = this.$scopedSlots.default({
