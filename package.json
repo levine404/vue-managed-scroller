@@ -1,7 +1,7 @@
 {
   "name": "vue-managed-scroller",
   "author": "Justin Levine",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,7 +11,6 @@
   "scripts": {
     "test": "echo \"No test specified\"",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build-bundle": "vue-cli-service build --target lib --name vue-managed-scroller ./src/components/index.js"
   },
